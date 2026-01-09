@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversione in corso...</title>
+    <style>
+        #bar {
+            width: 0%;
+            height: 30px;
+            background: green;
+            transition: width 0.5s;
+        }
+        #container {
+            width: 100%;
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conversione in corso...</h1>
+
+    <div id="container">
+        <div id="bar"></div>
+    </div>
+
+    <p id="status"></p>
+
+    <script>
+        function updateProgress() {
+            fetch("/progress")
+                .then(r => r.json())
+                .then(data => {
+                    let perc = Math.floor((data.current / data.total) * 100);
+                    document.getElementById("bar").style.width = perc + "%";
+                    document.getElementById("status").innerText =
+                        `Capitolo ${data.current} di ${data.total}`;
+
+                    if (data.current >= data.total) {
+                        window.location.href = "/audio";
+                    }
+                });
+        }
+
+        setInterval(updateProgress, 1000);
+    </script>
+</body>
+</html>

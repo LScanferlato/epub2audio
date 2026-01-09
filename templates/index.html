@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>EPUB/PDF → Audio</title>
+</head>
+<body>
+    <h1>Converti EPUB o PDF in Audio</h1>
+
+    <form action="/" method="post" enctype="multipart/form-data">
+
+        <label>Carica file (EPUB o PDF):</label><br>
+        <input type="file" name="file" accept=".epub,.pdf" required><br><br>
+
+        <label>Prefisso file audio:</label><br>
+        <input type="text" name="prefix" value="libro"><br><br>
+
+        <label>Lingua:</label><br>
+        <select name="language" required>
+            <option value="it">Italiano</option>
+            <option value="en">Inglese</option>
+            <option value="es">Spagnolo</option>
+            <option value="fr">Francese</option>
+            <option value="de">Tedesco</option>
+        </select><br><br>
+
+        <label>Voce / Modello TTS:</label><br>
+        <select name="model" required>
+            <option value="tts_models/it/mai_female/vits">Italiano - Femminile</option>
+            <option value="tts_models/en/ljspeech/tacotron2-DDC">Inglese - Femminile</option>
+            <option value="tts_models/es/css10/vits">Spagnolo - Femminile</option>
+            <option value="tts_models/fr/css10/vits">Francese - Femminile</option>
+            <option value="tts_models/de/thorsten/tacotron2-DDC">Tedesco - Maschile</option>
+        </select><br><br>
+
+        <button type="submit">Converti</button>
+    </form>
+
+    <hr>
+    <a href="/audio">Vai ai file audio generati</a>
+</body>
+</html>
