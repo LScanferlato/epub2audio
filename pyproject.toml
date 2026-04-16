@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epub2audio"
+version = "0.1.0"
+description = "Converti EPUB in audio narrato con sintesi vocale"
+authors = [{name = "Lorenzo Scanferlato"}]
+license = {text = "MIT"}
+readme = "README.md"
+dependencies = [
+    "ebooklib>=0.18.3",
+    "pyttsx3>=2.90",
+    "mutagen>=1.46.0",
+    "click>=8.1.7"
+]
+
+[project.scripts]
+epub2audio = "app:main"
