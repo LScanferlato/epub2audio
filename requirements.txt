@@ -1,0 +1,5 @@
+# requirements.txt
+ebooklib==0.18.3
+pyttsx3==2.90
+mutagen==1.46.0
+click==8.1.7
