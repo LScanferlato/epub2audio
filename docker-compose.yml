@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  epub2audio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: epub2audio
+    restart: unless-stopped
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"  # Usa ID utente host (opzionale)
+    volumes:
+      - ./input:/app/input:ro        # Cartella con file EPUB (solo lettura)
+      - ./output:/app/output         # Cartella per salvare file MP3
+    working_dir: /app
+    command: >
+      python app.py
+      --input /app/input/libro.epub
+      --output /app/output/narrato.mp3
+      --voice it
+      --rate 140
+      --volume 0.9
+    # Opzionale: aggiungi variabili d'ambiente
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Opzionale: log in console
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
